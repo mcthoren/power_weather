@@ -1,0 +1,42 @@
+#!/bin/sh
+BASE="/home/ghz/wx/power"
+DATA_D="$BASE/data"
+OUT_FILE="$BASE/power.html"
+DATE=`date +%T\ %Z\ %d\ %b\ %Y`
+TDATE=`date +%Y%m%d`
+
+TOP="<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">
+<html> <head> <title> slackology.net power weather </title> </head> 
+<body  bgcolor=\"#000000\" text=\"#206cff\" link=\"#0099ff\" vlink=\"#00ffff\"> 
+<center> <h1>Power Usage.</h1>
+This page is still a bit of a work in progress, expect things to improve shortly.<br>
+<a href="http://slackology.net/wxnotes.html#pow">More info on the weather notes page.</a><br>
+<br> Current Conditions (updates every ~60s):
+<table borders>"
+
+END="</table>
+<br>
+<img src=\"http://wx.slackology.net/power/all.png\"><br><br>
+<img src=\"http://wx.slackology.net/power/total.png\"><br><br>
+<img src=\"http://wx.slackology.net/power/power_0.png\"><br><br>
+<img src=\"http://wx.slackology.net/power/power_1.png\"><br><br>
+<img src=\"http://wx.slackology.net/power/temp.png\"><br><br>
+</center>
+<br> <br>
+</body> </html>"
+
+LASTLINE=` cat $DATA_D/$TDATE |tail -1`
+POW0=`echo $LASTLINE |awk '{print ($2-1029)*5.543, "Watts"}'`
+POW1=`echo $LASTLINE |awk '{print ($3-1029)*5.543, "Watts"}'`
+TOT=`echo $LASTLINE |awk '{print ($2+$3-2058)*5.543, "Watts"}'`
+TEMP=`echo $LASTLINE |awk '{print $5}'`
+
+echo $TOP >$OUT_FILE
+
+echo "<tr><td>Power Use, phase 0:</td> <td>$POW0</td></tr>" >>$OUT_FILE
+echo "<tr><td>Power Use, phase 1:</td> <td>$POW1</td></tr>" >>$OUT_FILE
+echo "<tr><td>Power Use, ph 0 + ph 1:</td> <td>$TOT</td></tr>" >>$OUT_FILE
+echo "<tr><td>Temp:</td> <td>$TEMP</td></tr>" >>$OUT_FILE
+echo "<tr><td>Last Update:</td> <td>$DATE</td></tr>" >>$OUT_FILE
+
+echo $END >>$OUT_FILE
