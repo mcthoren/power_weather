@@ -41,7 +41,7 @@ if __name__ == "__main__":
 
 		# in theory, if we measure peak to peak AC voltage with a current probe that
 		# reads 1V for every 15A, and if our voltage and current are in phase. then:
-		# rms power [W] = reading [V] * sqrt(2) * line voltage [V] * 15[A/V]
+		# rms power [W] = current probe reading [Vpp] * sqrt(2) * line voltage [V] * 15[A/V]
 		theory_power = p_vals[0] * .707106781 * 229 * 15
 		# dat_s = "%s\t0:\t%.4f V, 1:\t%.2f V, 2:\t%.2f V, 3:\t%.2f V" % (ts, p_vals[0], p_vals[1], p_vals[2], p_vals[3])
 		dat_s = "%s\tph0: %.4f V,\tBatt: %.2f V,\tPower: %.0f W" % (ts, p_vals[0], p_vals[1], theory_power)
