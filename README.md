@@ -12,6 +12,7 @@ To install the prerequisites one needs sth like the following:
   * https://learn.adafruit.com/adafruit-4-channel-adc-breakouts/overview
   * https://learn.adafruit.com/raspberry-pi-analog-to-digital-converters?view=all#ads1015-slash-ads1115
   * https://cdn-shop.adafruit.com/datasheets/ads1115.pdf
+  * https://www.poweruc.pl/collections/split-core-current-transformers2/products/split-core-current-transformer-sct013-rated-input-5a-100a
 
 to do:
 - [x] lic
