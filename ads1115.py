@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: UTF-8 -*-
+# https://www.adafruit.com/product/1085
 
 import board, busio
 import adafruit_ads1x15.ads1115 as ADS
