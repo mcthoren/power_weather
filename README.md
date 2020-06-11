@@ -16,6 +16,6 @@ To install the prerequisites one needs sth like the following:
 to do:
 - [x] lic
 - [ ] readme
-- [ ] protoype hardware
+- [x] protoype hardware
 - [ ] build hardware
 - [ ] calibrate
