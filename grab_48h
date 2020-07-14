@@ -27,7 +27,6 @@ for (my $nday = 2; $nday >= 0; $nday--) {
 	my $tdatey = strftime "%Y%m%d", localtime($date_it);
 
 	my $in_dat_f = "$data_d/$datey/power.$tdatey";
-	printf("$in_dat_f\n");
 
 	if (-e $in_dat_f) {
 		open(IN, "<", $in_dat_f) or die "omg! can't open input file: $in_dat_f";
