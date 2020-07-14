@@ -1,0 +1,59 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use POSIX qw(strftime);
+
+my $p_flag = 0;
+
+my $date = time;
+my $data_d = '/home/ghz/power_wx/data';
+
+my $out_dat_f = "$data_d/2-3_day.power";
+my $out_dat_f_t = "$out_dat_f.tmp";
+
+unlink $out_dat_f or printf "could not delete $out_dat_f\n";
+if (-e $out_dat_f_t) {
+	unlink $out_dat_f_t or printf "could not delete $out_dat_f_t\n";
+}
+
+open(OUT, ">>", $out_dat_f) or die "omg! can't open output file: $out_dat_f";
+open(OUT_t, ">>", $out_dat_f_t) or die "omg! can't open output file: $out_dat_f_t";
+
+for (my $nday = 2; $nday >= 0; $nday--) {
+	my $date_it = $date - ($nday * 86400);
+
+	my $datey = strftime "%Y", localtime($date_it);
+	my $tdatey = strftime "%Y%m%d", localtime($date_it);
+
+	my $in_dat_f = "$data_d/$datey/power.$tdatey";
+	printf("$in_dat_f\n");
+
+	if (-e $in_dat_f) {
+		open(IN, "<", $in_dat_f) or die "omg! can't open input file: $in_dat_f";
+
+		while (<IN>) {
+			printf OUT;
+		}
+
+		close(IN);
+	}
+}
+close(OUT);
+
+my $date_pat = strftime "%Y%m%d%H", localtime($date - (2 * 86400));
+open(OUT, "<", $out_dat_f) or die "omg! can't open output file: $out_dat_f";
+
+	while (<OUT>) {
+		$p_flag = 1 if(/^$date_pat/);
+		printf OUT_t if($p_flag);
+	}
+
+close(OUT);
+close(OUT_t);
+
+if (-e $out_dat_f_t && -s $out_dat_f_t >= 100000) {
+	rename $out_dat_f_t, $out_dat_f; 
+} elsif (-e $out_dat_f_t) {
+	unlink $out_dat_f_t or printf "could not delete $out_dat_f_t\n";
+}
