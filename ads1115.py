@@ -45,13 +45,7 @@ if __name__ == "__main__":
 
 		ts = datetime.datetime.fromtimestamp(time.time()).strftime("%Y%m%d%H%M%S")
 
-		# in theory, if we measure peak to peak AC voltage with a current probe that
-		# reads 1V for every 15A, and if our voltage and current are in phase. then:
-		# rms power [W] = current probe reading [Vpp] * sqrt(2) * line voltage [V] * 15[A/V]
-		theory_power = p_vals[0] * .707106781 * 229 * 15
-
-		dat_s = "%s\tph0: %.4f V,\tph1: %.4f V,\tph2: %.4f V,\tBatt: %.2f V,\tPower_0: %.0f W\n" % \
-		(ts, p_vals[0], p_vals[1], p_vals[2], p_vals[3], theory_power)
+		dat_s = "%s\tph0: %.4f V,\tph1: %.4f V,\tph2: %.4f V,\tBatt: %.2f V\n" % \
+		(ts, p_vals[0], p_vals[1], p_vals[2], p_vals[3])
 
 		wx.write_out_dat_stamp(ts, dat_fname, dat_s, wx_dir)
-		print(dat_s, end='', flush=True)
