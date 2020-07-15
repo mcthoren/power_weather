@@ -20,20 +20,23 @@ dat_f='/home/ghz/power_wx/data/2-3_day.power'
 
 # in theory, if we measure peak to peak AC voltage with a current probe that
 # reads 1V for every 15A, and if our voltage and current are in phase. then:
-# rms power [W] = current probe reading [Vpp] * sqrt(2) * line voltage [V] * 15[A/V]
+# rms power [W] = current probe reading [Vpp] * sqrt(2) * line voltage [Vrms] * 15[A/V]
 # theory_power = probe_voltage * .707106781 * 229 * 15
 
+# probe voltage to watts
+p_v2w = .707106781 * 229 * 15
+
 set output '/home/ghz/power_wx/plots/power.ph_0.png'
-plot dat_f using 1:($3 * .707106781 * 229 * 15) title 'Power Use (phase 0, Watts)' with lines linecolor rgb "#00ff00"
+plot dat_f using 1:($3 * p_v2w) title 'Power Use (phase 0, Watts)' with lines linecolor rgb "#00ff00"
 
 set output '/home/ghz/power_wx/plots/power.ph_1.png'
-plot dat_f using 1:($6 * .707106781 * 229 * 15) title 'Power Use (phase 1, Watts)' with lines linecolor rgb "#00ffff"
+plot dat_f using 1:($6 * p_v2w) title 'Power Use (phase 1, Watts)' with lines linecolor rgb "#00ffff"
 
 set output '/home/ghz/power_wx/plots/power.ph_2.png'
-plot dat_f using 1:($9 * .707106781 * 229 * 15) title 'Power Use (phase 2, Watts)' with lines linecolor rgb "#ff00ff"
+plot dat_f using 1:($9 * p_v2w) title 'Power Use (phase 2, Watts)' with lines linecolor rgb "#ff00ff"
 
 set output '/home/ghz/power_wx/plots/power.ph_0+1+2.png'
-plot dat_f using 1:(($3+$6+$9) * .707106781 * 229 * 15) title 'Power Use (phase 0+1+2, Watts)' with lines linecolor rgb "#ff0000"
+plot dat_f using 1:(($3+$6+$9) * p_v2w) title 'Power Use (phase 0+1+2, Watts)' with lines linecolor rgb "#ff0000"
 
 set ylabel "(V)"
 set y2label "(V)"
