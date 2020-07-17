@@ -9,7 +9,6 @@ set timefmt "%Y%m%dT%H%M%S"
 set grid
 set term png size 1900, 512 font ",10"
 
-# set 4 decimal places just for testing to make sure we have the right cols
 set format y "%.0f"
 set format y2 "%.0f"
 
@@ -21,9 +20,6 @@ dat_f='/home/ghz/power_wx/data/2-3_day.power'
 # in theory, if we measure peak to peak AC voltage with a current probe that
 # reads 1V for every 15A, and if our voltage and current are in phase. then:
 # rms power [W] = current probe reading [Vpp] * sqrt(2) * line voltage [Vrms] * 15[A/V]
-# theory_power = probe_voltage * .707106781 * 229 * 15
-
-# probe voltage to watts
 p_v2w = .707106781 * 229 * 15
 
 set output '/home/ghz/power_wx/plots/power.ph_0.png'
