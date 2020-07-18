@@ -5,7 +5,7 @@ set key outside below
 set xlabel "Time (UTC)" offset 0.0, -1.6;
 set xdata time;
 set format x "%F\n%TZ"
-set timefmt "%Y%m%dT%H%M%S"
+set timefmt "%Y%m%d%H%M%S"
 set grid
 set term png size 1900, 512 font ",10"
 
