@@ -20,6 +20,8 @@ if (-e $out_dat_f_t) {
 open(OUT, ">>", $out_dat_f) or die "omg! can't open output file: $out_dat_f";
 open(OUT_t, ">>", $out_dat_f_t) or die "omg! can't open output file: $out_dat_f_t";
 
+my $date_pat = strftime "%Y%m%d%H", localtime($date - (2 * 86400));
+
 for (my $nday = 2; $nday >= 0; $nday--) {
 	my $date_it = $date - ($nday * 86400);
 
@@ -32,22 +34,13 @@ for (my $nday = 2; $nday >= 0; $nday--) {
 		open(IN, "<", $in_dat_f) or die "omg! can't open input file: $in_dat_f";
 
 		while (<IN>) {
+			$p_flag = 1 if(/^$date_pat/);
 			printf OUT;
+			printf OUT_t if($p_flag);
 		}
-
 		close(IN);
 	}
 }
-close(OUT);
-
-my $date_pat = strftime "%Y%m%d%H", localtime($date - (2 * 86400));
-open(OUT, "<", $out_dat_f) or die "omg! can't open output file: $out_dat_f";
-
-	while (<OUT>) {
-		$p_flag = 1 if(/^$date_pat/);
-		printf OUT_t if($p_flag);
-	}
-
 close(OUT);
 close(OUT_t);
 
