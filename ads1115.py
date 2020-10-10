@@ -57,3 +57,4 @@ if __name__ == "__main__":
 		(ts, p_vals[0], p_vals[1], p_vals[2], p_vals[3])
 
 		wx.write_out_dat_stamp(ts, dat_fname, dat_s, wx_dir)
+		time.sleep(16) # give the system some time to chill
