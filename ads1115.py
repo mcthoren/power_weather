@@ -31,17 +31,25 @@ if __name__ == "__main__":
 		for i in range(0, 4):
 			p_vals[i] = vals[i] = 0
 
-		for i in range(0, 150):
-			vals[0] = c0.voltage
-			vals[1] = c1.voltage
-			vals[2] = c2.voltage
-			vals[3] = c3.voltage
+		# hope that 150 samples will find the peak of a 50Hz sin wave...
+		for m in range(0, 150):
+			try:
+				vals[0] = c0.voltage
+				vals[1] = c1.voltage
+				vals[2] = c2.voltage
+				vals[3] = c3.voltage
+			except:
+				# warn. clear. bail.
+				print("ad read error. prly from deep in the bowels of a lib somewere.")
+				for k in range(0, 4):
+					vals[k] = 0
+				continue
 
-			# "peak detection" python's not really fast enough to do this.
-			for i in range(0, 4):
-				if vals[i] > p_vals[i]:
-					p_vals[i] = vals[i]
-
+			# "peak detection". this code was orig written for a µC, where our sample freq was
+			# well above nyquist for [56]0Hz power. python's not really fast enough to do this.
+			for j in range(0, 4):
+				if vals[j] > p_vals[j]:
+					p_vals[j] = vals[j]
 
 		ts = datetime.datetime.fromtimestamp(time.time()).strftime("%Y%m%d%H%M%S")
 
