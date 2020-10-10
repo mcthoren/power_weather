@@ -38,6 +38,9 @@ if __name__ == "__main__":
 				vals[1] = c1.voltage
 				vals[2] = c2.voltage
 				vals[3] = c3.voltage
+			except KeyboardInterrupt:
+				print("keyboard interrupt. bailing.")
+				exit()
 			except:
 				# warn. clear. bail.
 				print("ad read error. prly from deep in the bowels of a lib somewere.")
