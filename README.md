@@ -16,9 +16,10 @@ To install the prerequisites one needs sth like the following:
 
 to do:
 - [x] lic
-- [ ] readme
+- [x] readme
 - [x] protoype hardware
-- [ ] build hardware
+- [x] build hardware
+- [ ] wedge hardware into breaker box
 - [x] hook up plotting
 - [x] webpage
 - [ ] calibrate
