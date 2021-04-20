@@ -15,7 +15,7 @@ set format y2 "%.0f"
 set ylabel "(W)"
 set y2label "(W)"
 
-dat_f='/home/ghz/power_wx/data/2-3_day.power'
+dat_f='/home/ghz/power_wx/data/power.2-3_day'
 
 # in theory, if we measure peak to peak AC voltage with a current probe that
 # reads 1V for every 15A, and if our voltage and current are in phase. then:

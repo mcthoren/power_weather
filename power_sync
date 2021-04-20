@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# meant to be called from cron every minute or so
+
+LOCK="/home/ghz/repos/power_weather/plots/power.lock"
+
+[ -e "${LOCK}" ] && {
+	echo "$0: lock exists" | logger
+	exit 1
+}
+
+# lock is also checked for and deleted on boot, in case of a crash
+touch "${LOCK}"
+
+WT_DIR='/home/ghz/repos/weather_tools/'
+
+$WT_DIR/grab_48h /home/ghz/repos/power_weather/data power
+
+cd /home/ghz/repos/power_weather/plots || exit 1
+gnuplot /home/ghz/repos/power_weather/power.gnuplot
+
+sync
+
+/usr/bin/rsync -ur --timeout=50 /home/ghz/repos/power_weather wx0_sync:/wx0/
+
+rm "${LOCK}"
