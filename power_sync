@@ -21,6 +21,6 @@ gnuplot /home/ghz/repos/power_weather/power.gnuplot
 
 sync
 
-/usr/bin/rsync -ur --timeout=50 /home/ghz/repos/power_weather wx0_sync:/wx0/
+/usr/bin/rsync -ur --timeout=50 /home/ghz/repos/power_weather wx0_sync:/wx0/ 2> /dev/null
 
 rm "${LOCK}"
