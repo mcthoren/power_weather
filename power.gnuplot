@@ -36,8 +36,8 @@ plot dat_f using 1:(($3+$6+$9) * p_v2w) title 'Power Use (phase 0+1+2, Watts)' w
 
 set ylabel "(V)"
 set y2label "(V)"
-set format y "%.2f"
-set format y2 "%.2f"
+set format y "%.3f"
+set format y2 "%.3f"
 
 set title "Battery Voltage over the Last \\~48 Hours"
 set output '/home/ghz/power_wx/plots/power.batt.png'

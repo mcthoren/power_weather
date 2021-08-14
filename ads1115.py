@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
 		ts = datetime.datetime.fromtimestamp(time.time()).strftime("%Y%m%d%H%M%S")
 
-		dat_s = "%s\tph0: %.4f V,\tph1: %.4f V,\tph2: %.4f V,\tBatt: %.2f V\n" % \
+		dat_s = "%s\tph0: %.4f V,\tph1: %.4f V,\tph2: %.4f V,\tBatt: %.4f V\n" % \
 		(ts, p_vals[0], p_vals[1], p_vals[2], p_vals[3])
 
 		wx.write_out_dat_stamp(ts, dat_fname, dat_s, wx_dir)
