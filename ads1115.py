@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 # https://www.adafruit.com/product/1085
 
-import board, busio, time, datetime, sys
+import board, busio, time, sys
 import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
 
@@ -54,7 +54,7 @@ if __name__ == "__main__":
 				if vals[j] > p_vals[j]:
 					p_vals[j] = vals[j]
 
-		ts = datetime.datetime.fromtimestamp(time.time()).strftime("%Y%m%d%H%M%S")
+		ts = time.strftime("%Y%m%d%H%M%S", time.gmtime())
 
 		dat_s = "%s\tph0: %.4f V,\tph1: %.4f V,\tph2: %.4f V,\tBatt: %.4f V\n" % \
 		(ts, p_vals[0], p_vals[1], p_vals[2], p_vals[3])
