@@ -56,8 +56,8 @@ if __name__ == "__main__":
 
 		ts = time.strftime("%Y%m%d%H%M%S", time.gmtime())
 
-		dat_s = "%s\tph0: %.4f V,\tph1: %.4f V,\tph2: %.4f V,\tBatt: %.4f V\n" % \
-		(ts, p_vals[0], p_vals[1], p_vals[2], p_vals[3])
+		dat_s = "%s\tph0: %.4f V,\tph1: %.4f V,\tph2: %.4f V,\tBatt: %.4f V\tpi_temp: %.2f °C\n" % \
+		(ts, p_vals[0], p_vals[1], p_vals[2], p_vals[3], float(wx.pi_temp_read()) / 1000)
 
 		wx.write_out_dat_stamp(ts, dat_fname, dat_s, wx_dir)
 		time.sleep(16) # give the system some time to chill
