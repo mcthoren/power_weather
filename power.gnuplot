@@ -20,25 +20,30 @@ dat_f='/home/ghz/power_wx/data/power.2-3_day'
 # in theory, if we measure peak to peak AC voltage with a current probe that
 # reads 1V for every 15A, and if our voltage and current are in phase. then:
 # rms power [W] = current probe reading [Vpp] * sqrt(2) * line voltage [Vrms] * 15[A/V]
-p_v2w = .707106781 * 229 * 15
+p_v2w = .707106781 * 236 * 15
 
 set output '/home/ghz/power_wx/plots/power.ph_0.png'
-plot dat_f using 1:($3 * p_v2w) title 'Power Use (phase 0, Watts)' with lines linecolor rgb "#00ff00"
+plot dat_f using 1:($3 * p_v2w) title 'Power Use (Main Phase, Watts)' with lines linecolor rgb "#00ff00"
 
 set output '/home/ghz/power_wx/plots/power.ph_1.png'
-plot dat_f using 1:($6 * p_v2w) title 'Power Use (phase 1, Watts)' with lines linecolor rgb "#00ffff"
+plot dat_f using 1:($6 * p_v2w) title 'Power Use (DDR Outlets, Watts)' with lines linecolor rgb "#00ffff"
 
-set output '/home/ghz/power_wx/plots/power.ph_2.png'
-plot dat_f using 1:($9 * p_v2w) title 'Power Use (phase 2, Watts)' with lines linecolor rgb "#ff00ff"
+# set output '/home/ghz/power_wx/plots/power.ph_2.png'
+# plot dat_f using 1:($9 * p_v2w) title 'Power Use (phase 2, Watts)' with lines linecolor rgb "#ff00ff"
 
-set output '/home/ghz/power_wx/plots/power.ph_0+1+2.png'
-plot dat_f using 1:(($3+$6+$9) * p_v2w) title 'Power Use (phase 0+1+2, Watts)' with lines linecolor rgb "#ff0000"
+# set output '/home/ghz/power_wx/plots/power.ph_0+1+2.png'
+# plot dat_f using 1:(($3+$6+$9) * p_v2w) title 'Power Use (phase 0+1+2, Watts)' with lines linecolor rgb "#ff0000"
 
-set ylabel "(V)"
-set y2label "(V)"
-set format y "%.3f"
-set format y2 "%.3f"
+# set ylabel "(V)"
+# set y2label "(V)"
+# set format y "%.3f"
+# set format y2 "%.3f"
 
-set title "Battery Voltage over the Last \\~48 Hours"
-set output '/home/ghz/power_wx/plots/power.batt.png'
-plot dat_f using 1:12 title 'Battery Voltage (Volts)' with lines linecolor rgb "#0000ff"
+# set title "Battery Voltage over the Last \\~48 Hours"
+# set output '/home/ghz/power_wx/plots/power.batt.png'
+# plot dat_f using 1:12 title 'Battery Voltage (Volts)' with lines linecolor rgb "#0000ff"
+
+set ylabel "(°C)"
+set y2label "(°C)"
+set output '/home/ghz/power_wx/plots/pitemp.png'
+plot dat_f using 1:15 title 'Pi Temp (°C)' with lines linecolor rgb "#ff0000" smooth bezier
