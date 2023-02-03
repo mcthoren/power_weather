@@ -19,7 +19,7 @@ to do:
 - [x] readme
 - [x] protoype hardware
 - [x] build hardware
-- [ ] wedge hardware into breaker box
+- [x] wedge hardware into breaker box
 - [x] hook up plotting
 - [x] webpage
 - [ ] calibrate
