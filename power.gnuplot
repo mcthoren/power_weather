@@ -36,21 +36,36 @@ plot dat_f using 1:($3 * pp_v2w_0) title 'Power Use (Main Phase, Watts)' with li
 set output '/home/ghz/power_wx/plots/power.ph_1.png'
 plot dat_f using 1:($6 * pp_v2w_1) title 'Power Use (DDR Kitchen Outlets, Watts)' with lines linecolor rgb "#00ffff"
 
-# set output '/home/ghz/power_wx/plots/power.ph_2.png'
-# plot dat_f using 1:($9 * p_v2w) title 'Power Use (phase 2, Watts)' with lines linecolor rgb "#ff00ff"
+set logscale yy2
+set title "Power use (log scale) over the Last \\~48 Hours"
 
-# set output '/home/ghz/power_wx/plots/power.ph_0+1+2.png'
-# plot dat_f using 1:(($3+$6+$9) * p_v2w) title 'Power Use (phase 0+1+2, Watts)' with lines linecolor rgb "#ff0000"
+# this is an incredibly hacky way to get both the y and y2 ranges to be the same
+# in gnuplot. i could fill a page with all the things i've tried that one might
+# expect to work, but wind up producing an invalid y2range that then throws a
+# warning when the y2tics are set even tho the yrange is valid. i don't know why.
+unset y2tics
+set output "| cat > /dev/null"
+plot dat_f using 1:($3 * pp_v2w_0) title 'Log Power Use (Main Phase, Watts)' with lines linecolor rgb "#00ff00"
 
-# set ylabel "(V)"
-# set y2label "(V)"
-# set format y "%.3f"
-# set format y2 "%.3f"
+set y2range [GPVAL_Y_MIN:GPVAL_Y_MAX]
+set y2tics
+set output '/home/ghz/power_wx/plots/power.ph_0_log.png'
+plot dat_f using 1:($3 * pp_v2w_0) title 'Log Power Use (Main Phase, Watts)' with lines linecolor rgb "#00ff00"
 
-# set title "Battery Voltage over the Last \\~48 Hours"
-# set output '/home/ghz/power_wx/plots/power.batt.png'
-# plot dat_f using 1:12 title 'Battery Voltage (Volts)' with lines linecolor rgb "#0000ff"
 
+unset y2tics
+set output "| cat > /dev/null"
+plot dat_f using 1:($6 * pp_v2w_1) title 'Log Power Use (DDR Kitchen Outlets, Watts)' with lines linecolor rgb "#00ffff"
+
+set y2range [GPVAL_Y_MIN:GPVAL_Y_MAX]
+set y2tics
+set output '/home/ghz/power_wx/plots/power.ph_1_log.png'
+plot dat_f using 1:($6 * pp_v2w_1) title 'Log Power Use (DDR Kitchen Outlets, Watts)' with lines linecolor rgb "#00ffff"
+
+unset logscale
+unset y2range
+
+set title "Temperature of the power Pi processor over the Last \\~48 Hours"
 set ylabel "(°C)"
 set y2label "(°C)"
 set output '/home/ghz/power_wx/plots/pitemp.png'
