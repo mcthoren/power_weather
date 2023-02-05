@@ -14,7 +14,7 @@ touch "${LOCK}"
 
 WT_DIR='/home/ghz/repos/weather_tools/'
 
-$WT_DIR/grab_48h /home/ghz/repos/power_weather/data power
+$WT_DIR/grab_n_hours -n 24 -d /home/ghz/repos/power_weather/data -f power
 
 cd /home/ghz/repos/power_weather/plots || exit 1
 gnuplot /home/ghz/repos/power_weather/power.gnuplot

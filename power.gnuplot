@@ -1,4 +1,4 @@
-set title "Power use over the Last \\~48 Hours"
+set title "Power use over the Last \\~24 Hours"
 set xtics 7200 rotate by 30 offset -5.7, -2.2
 set y2tics 
 set key outside below
@@ -15,7 +15,7 @@ set format y2 "%.0f"
 set ylabel "(W)"
 set y2label "(W)"
 
-dat_f='/home/ghz/power_wx/data/power.2-3_day'
+dat_f='/home/ghz/power_wx/data/power.24_hours'
 
 # in theory, if we measure peak to peak AC voltage with a current probe that
 # reads 1V for every 15A, and if our voltage and current are in phase. then:
@@ -37,7 +37,7 @@ set output '/home/ghz/power_wx/plots/power.ph_1.png'
 plot dat_f using 1:($6 * pp_v2w_1) title 'Power Use (DDR Kitchen Outlets, Watts)' with lines linecolor rgb "#00ffff"
 
 set logscale yy2
-set title "Power use (log scale) over the Last \\~48 Hours"
+set title "Power use (log scale) over the Last \\~24 Hours"
 
 # this is an incredibly hacky way to get both the y and y2 ranges to be the same
 # in gnuplot. i could fill a page with all the things i've tried that one might
@@ -65,7 +65,7 @@ plot dat_f using 1:($6 * pp_v2w_1) title 'Log Power Use (DDR Kitchen Outlets, Wa
 unset logscale
 unset y2range
 
-set title "Temperature of the power Pi processor over the Last \\~48 Hours"
+set title "Temperature of the power Pi processor over the Last \\~24 Hours"
 set ylabel "(°C)"
 set y2label "(°C)"
 set output '/home/ghz/power_wx/plots/pitemp.png'
