@@ -14,6 +14,11 @@ To install the prerequisites one needs sth like the following:
   * https://cdn-shop.adafruit.com/datasheets/ads1115.pdf
   * https://www.poweruc.pl/collections/split-core-current-transformers2/products/split-core-current-transformer-sct013-rated-input-5a-100a
 
+* This code can be found in the following places:
+  * https://wx0.slackology.net/power_weather/power.html		<--page
+  * https://github.com/mcthoren/power_weather			<--code
+  * https://wx0.slackology.net/power_weather/			<--code, data, plots, page
+
 to do:
 - [x] lic
 - [x] readme
