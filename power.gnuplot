@@ -28,13 +28,13 @@ dat_f='/home/ghz/power_wx/data/power.24_hours'
 # current and not drawn in phase, and that thish phase difference is
 # dynamic. this is going to remain a dev project for a bit longer yet.
 pp_v2w_0 = 1442		# in practice power via voltage to watts conv.
-pp_v2w_1 = 859
+p1(x) = (845 * x + 46)	# power in watts from probe voltage conv func. this is better. but needs more work.
 
 set output '/home/ghz/power_wx/plots/power.ph_0.png'
 plot dat_f using 1:($3 * pp_v2w_0) title 'Power Use (Main Phase, Watts)' with lines linecolor rgb "#00ff00"
 
 set output '/home/ghz/power_wx/plots/power.ph_1.png'
-plot dat_f using 1:($6 * pp_v2w_1) title 'Power Use (DDR Kitchen Outlets, Watts)' with lines linecolor rgb "#00ffff"
+plot dat_f using 1:(p1($6)) title 'Power Use (DDR Kitchen Outlets, Watts)' with lines linecolor rgb "#00ffff"
 
 set logscale yy2
 set title "Power use (log scale) over the Last \\~24 Hours"
@@ -55,12 +55,12 @@ plot dat_f using 1:($3 * pp_v2w_0) title 'Log Power Use (Main Phase, Watts)' wit
 
 unset y2tics
 set output "| cat > /dev/null"
-plot dat_f using 1:($6 * pp_v2w_1) title 'Log Power Use (DDR Kitchen Outlets, Watts)' with lines linecolor rgb "#00ffff"
+plot dat_f using 1:(p1($6)) title 'Log Power Use (DDR Kitchen Outlets, Watts)' with lines linecolor rgb "#00ffff"
 
 set y2range [GPVAL_Y_MIN:GPVAL_Y_MAX]
 set y2tics
 set output '/home/ghz/power_wx/plots/power.ph_1_log.png'
-plot dat_f using 1:($6 * pp_v2w_1) title 'Log Power Use (DDR Kitchen Outlets, Watts)' with lines linecolor rgb "#00ffff"
+plot dat_f using 1:(p1($6)) title 'Log Power Use (DDR Kitchen Outlets, Watts)' with lines linecolor rgb "#00ffff"
 
 unset logscale
 unset y2range
