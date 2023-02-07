@@ -68,5 +68,7 @@ unset y2range
 set title "Temperature of the power Pi processor over the Last \\~24 Hours"
 set ylabel "(°C)"
 set y2label "(°C)"
+set format y "%.1f"
+set format y2 "%.1f"
 set output '/home/ghz/power_wx/plots/pitemp.png'
 plot dat_f using 1:15 title 'Pi Temp (°C)' with lines linecolor rgb "#ff0000" smooth bezier
