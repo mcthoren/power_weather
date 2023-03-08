@@ -27,8 +27,8 @@ dat_f='/home/ghz/power_wx/data/power.24_hours'
 # linearity are also diminishing. we can be also be sure that our voltage and
 # current and not drawn in phase, and that thish phase difference is
 # dynamic. this is going to remain a dev project for a bit longer yet.
-pp_v2w_0 = 1442		# in practice power via voltage to watts conv.
-p1(x) = (845 * x + 46)	# power in watts from probe voltage conv func. this is better. but needs more work.
+pp_v2w_0 = 1442			# in practice power via voltage to watts conv.
+p1(x) = (845 * (x - 0.0011))	# WIP. power in watts from probe voltage conv func. reality is nonlinear.
 
 set output '/home/ghz/power_wx/plots/power.ph_0.png'
 plot dat_f using 1:($3 * pp_v2w_0) title 'Power Use (Main Phase, Watts)' with lines linecolor rgb "#00ff00"
