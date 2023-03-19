@@ -37,8 +37,10 @@ p1(x) = (x - 0.0011) * (5000 / ((x + 1)**2) + 500)
 set output '/home/ghz/power_wx/plots/power.ph_0.png'
 plot dat_f using 1:($3 * pp_v2w_0) title 'Power Use (Main Phase, Watts)' with lines linecolor rgb "#00ff00"
 
+set yrange [0:]
 set output '/home/ghz/power_wx/plots/power.ph_1.png'
 plot dat_f using 1:(p1($6)) title 'Power Use (DDR Kitchen Outlets, Watts)' with lines linecolor rgb "#00ffff"
+unset yrange
 
 set logscale yy2
 set title "Power use (log scale) over the Last \\~24 Hours"
