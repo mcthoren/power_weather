@@ -53,7 +53,7 @@ set title "Power use (log scale) over the Last \\~24 Hours"
 # warning when the y2tics are set even tho the yrange is valid. i don't know why.
 unset y2tics
 set output "| cat > /dev/null"
-plot dat_f using 1:($3 * pp_v2w_0) title 'Log Power Use (Main Phase, Watts)' with lines linecolor rgb "#00ff00"
+plot dat_f using 1:($3 * pp_v2w_0)
 
 set y2range [GPVAL_Y_MIN:GPVAL_Y_MAX]
 set y2tics
@@ -63,7 +63,7 @@ plot dat_f using 1:($3 * pp_v2w_0) title 'Log Power Use (Main Phase, Watts)' wit
 
 unset y2tics
 set output "| cat > /dev/null"
-plot dat_f using 1:(p1($6)) title 'Log Power Use (DDR Kitchen Outlets, Watts)' with lines linecolor rgb "#00ffff"
+plot dat_f using 1:(p1($6))
 
 set y2range [GPVAL_Y_MIN:GPVAL_Y_MAX]
 set y2tics
