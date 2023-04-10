@@ -1,6 +1,7 @@
 set title "Power use over the Last \\~24 Hours"
 set xtics 7200 rotate by 30 offset -5.7, -2.2
 set y2tics 
+set link y2
 set key outside below
 set xlabel "Time (UTC)" offset 0.0, -1.6;
 set xdata time;
@@ -42,6 +43,7 @@ set output '/home/ghz/power_wx/plots/power.ph_1.png'
 plot dat_f using 1:(p1($6)) title 'Power Use (DDR Kitchen Outlets, Watts)' with lines linecolor rgb "#00ffff"
 unset yrange
 
+unset link y2
 set logscale yy2
 set title "Power use (log scale) over the Last \\~24 Hours"
 
@@ -74,6 +76,7 @@ unset y2range
 set title "Temperature of the power Pi processor over the Last \\~24 Hours"
 set ylabel "(°C)"
 set y2label "(°C)"
+set link y2
 set format y "%.1f"
 set format y2 "%.1f"
 set output '/home/ghz/power_wx/plots/pitemp.png'
