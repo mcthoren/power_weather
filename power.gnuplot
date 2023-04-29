@@ -1,3 +1,4 @@
+# vim: set syntax=gnuplot:
 set title "Power use over the Last \\~24 Hours"
 set xtics 7200 rotate by 30 offset -6.0, -3.2
 set y2tics 
@@ -33,7 +34,7 @@ dat_f='/home/ghz/power_wx/data/power.24_hours'
 pp_v2w_0 = 1442
 
 # this seems to get us much closer to measured results. we're going to refine and tweak some more.
-p1(x) = (x - 0.0011) * (5000 / ((x + 1)**2) + 500)
+p1(x) = x * (5000 / ((x + 1)**2) + 500)
 
 set output '/home/ghz/power_wx/plots/power.ph_0.png'
 plot dat_f using 1:($3 * pp_v2w_0) title 'Power Use (Main Phase, Watts)' with lines linecolor rgb "#00ff00"
