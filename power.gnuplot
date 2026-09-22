@@ -1,15 +1,16 @@
 # vim: set syntax=gnuplot:
 set title "Power use over the Last \\~24 Hours"
-set xtics 7200 rotate by 30 offset -6.0, -3.2
+set xtics 7200 rotate by 30 offset -6.0, -2.2
 set y2tics 
 set link y2
 set key outside below
-set xlabel "Time (UTC)" offset 0.0, -2.4;
+set xlabel "Time (UTC)" offset 0.0, -1.4;
 set xdata time;
 set format x "%F\n%TZ"
 set timefmt "%Y%m%d%H%M%S"
 set grid
-set term png size 1900, 512 font ",10"
+#set term png size 1900, 512 font ",10"
+set term svg size 1900, 700 font ",13" background '0xffffff'
 
 set format y "%.0f"
 set format y2 "%.0f"
@@ -36,11 +37,11 @@ pp_v2w_0 = 1442
 # this seems to get us much closer to measured results. we're going to refine and tweak some more.
 p1(x) = x * (5000 / ((x + 1)**2) + 500)
 
-set output '/home/ghz/power_wx/plots/power.ph_0.png'
+set output '/home/ghz/power_wx/plots/power.ph_0.svg'
 plot dat_f using 1:($3 * pp_v2w_0) title 'Power Use (Main Phase, Watts)' with lines linecolor rgb "#00ff00"
 
 set yrange [0:]
-set output '/home/ghz/power_wx/plots/power.ph_1.png'
+set output '/home/ghz/power_wx/plots/power.ph_1.svg'
 plot dat_f using 1:(p1($6)) title 'Power Use (DDR Kitchen Outlets, Watts)' with lines linecolor rgb "#00ffff"
 unset yrange
 
@@ -58,7 +59,7 @@ plot dat_f using 1:($3 * pp_v2w_0)
 
 set y2range [GPVAL_Y_MIN:GPVAL_Y_MAX]
 set y2tics
-set output '/home/ghz/power_wx/plots/power.ph_0_log.png'
+set output '/home/ghz/power_wx/plots/power.ph_0_log.svg'
 plot dat_f using 1:($3 * pp_v2w_0) title 'Log Power Use (Main Phase, Watts)' with lines linecolor rgb "#00ff00"
 
 
@@ -68,7 +69,7 @@ plot dat_f using 1:(p1($6))
 
 set y2range [GPVAL_Y_MIN:GPVAL_Y_MAX]
 set y2tics
-set output '/home/ghz/power_wx/plots/power.ph_1_log.png'
+set output '/home/ghz/power_wx/plots/power.ph_1_log.svg'
 plot dat_f using 1:(p1($6)) title 'Log Power Use (DDR Kitchen Outlets, Watts)' with lines linecolor rgb "#00ffff"
 
 unset logscale
@@ -80,5 +81,5 @@ set y2label "(°C)"
 set link y2
 set format y "%.1f"
 set format y2 "%.1f"
-set output '/home/ghz/power_wx/plots/pitemp.png'
+set output '/home/ghz/power_wx/plots/pitemp.svg'
 plot dat_f using 1:15 title 'Pi Temp (°C)' with lines linecolor rgb "#ff0000" smooth bezier
